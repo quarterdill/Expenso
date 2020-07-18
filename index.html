@@ -1,14 +1,45 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-<meta charset = "UTF-8">
-<meta name = "viewport" content="width=device-width, initial-scale=1">
-<title>Expense Calculator</title>
-<link href = "css/styles.css" rel="stylesheet" type="text/css">
-<script src="..\js\scripts.js"></script>
+	<meta charset = "UTF-8">
+	<meta name = "viewport" content="width=device-width, initial-scale=1">
+	<title>Expense Calculator</title>
+	<link href = "css/styles.css" rel="stylesheet" type="text/css">
+	<script src="..\js\scripts.js"></script>
 </head>
 
 <body>
+<header>
+
+<img src="receiptbackground.jpg" alt="Expense Calculator Image/Logo" class="logo">
+	<nav>
+		<ul>
+			<li><a href="">Some page</a></li>
+		</ul>
+	</nav>
+</header>
+
+<div class="wrapper">
+	<div class="form"> 
+		<div class="input-fields">
+			<input type="file" id="img" name="img" accept="image/png, image/jpg">
+			<div class="dropdown">
+			  <button class="dropbtn">Expense</button>
+			  <div class="doptions">
+			    <a href="#">Water</a>
+			    <a href="#">Food</a>
+			    <a href="#">Gas</a>
+			    <a href="#">Electricity</a>
+			    <a href="#">Miscellaneous</a>
+			 </div>
+			</div>
+			<input type="number" min="0" max="5000" placeholder="25.00">
+			<input type="text" class="input" placeholder="Message">
+		</div>
+	</div>
+</div>
+</body>
+</div>
 
 </body>
 </html>
