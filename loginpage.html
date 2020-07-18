@@ -44,15 +44,29 @@ limitations under the License.
     <!-- Google Sign In -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="/__/firebase/7.16.1/firebase-app.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
 
-    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-    <script src="/__/firebase/7.16.1/firebase-analytics.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
 
-    <!-- Add Firebase products that you want to use -->
-    <script src="/__/firebase/7.16.1/firebase-auth.js"></script>
-    <script src="/__/firebase/7.16.1/firebase-firestore.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDZpH9dnx6Fdcq0ZGdN6_PkRF7-7fm-XUs",
+            authDomain: "yeah-boyyyyy.firebaseapp.com",
+            databaseURL: "https://yeah-boyyyyy.firebaseio.com",
+            projectId: "yeah-boyyyyy",
+            storageBucket: "yeah-boyyyyy.appspot.com",
+            messagingSenderId: "49844241593",
+            appId: "1:49844241593:web:52b42c95aa57d0308ec768",
+            measurementId: "G-B80HSSCH1D"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
 
     <script type="text/javascript">
 
@@ -169,8 +183,6 @@ limitations under the License.
         };
     </script>
 </head>
-
-
 <body>
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
