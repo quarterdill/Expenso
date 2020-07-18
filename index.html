@@ -26,6 +26,7 @@
         <div class="calc-form">
             <div class="input-fields">
                 <input type="file" class="input" id="img" name="img" accept="image/png, image/jpg">
+                <!--
                 <div class="dropdown input">
                     <button class="dropbtn">Expense</button>
                     <div class="doptions">
@@ -36,12 +37,23 @@
                         <a href="#">Miscellaneous</a>
                     </div>
                 </div>
-                <input type="number" class="input" min="0" max="5000" placeholder="$25.00">
-                <div class="btn">Submit</div>
+                -->
+                <form action="/action_page.php">
+                    <label for="expense-type">Enter your expense type:</label>
+                    <select id="expense-type" name="expense-type">
+                        <option value='water'>Water</option>
+                        <option value='food'>Food</option>
+                        <option value='gas'>Gas</option>
+                        <option value='electricity'>Electricity</option>
+                        <option value='miscellaneous'>Miscellaneous expenses</option>
+                    </select>
+                </form>
+                <input type="number" class="input" min="0" max="5000" placeholder="$25.00" id="dollaramount">
+                <div class="btn" onclick=updateText()>Submit</div>
             </div>
         </div>
         <div class="output">
-            <textarea placeholder="Results and advice"></textarea>
+            <textarea placeholder="Results and advice" id="output"></textarea>
         </div>
     </div>
 
@@ -55,6 +67,16 @@
     <script src="/__/firebase/7.16.1/firebase-auth.js"></script>
     <script src="/__/firebase/7.16.1/firebase-firestore.js"></script>
 
+    <script>
+        function updateText() {
+            let amount = document.getElementById("dollaramount").value;
+            let expenselist = document.getElementById("expense-type");
+            let expensetype = expenselist.options[expenselist.selectedIndex].text;
+            let outstring = "yer mum pays $" + String(amount) + " a month for " + expensetype;
+            document.getElementById("output").value = outstring;
+            document.getElementById
+        }
+    </script>
+
 </body>
 </html>
-
