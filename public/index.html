@@ -71,13 +71,30 @@
     <script src="/__/firebase/7.16.1/firebase-firestore.js"></script>
 
     <script>
+        function getOutput(amount, expensetype) {
+            // @quarterdill replace with good text
+            if (expensetype=="Water"){
+                return "water"
+            }
+            if (expensetype=="Food"){
+                return "food"
+            }
+            if (expensetype=="Gas"){
+                return "gas"
+            }
+            if (expensetype=="Electricity"){
+                return "electricity"
+            }
+            if (expensetype=="Miscellaneous"){
+                return "miscellaneous"
+            }
+        }
         function updateText() {
             let amount = document.getElementById("dollaramount").value;
             let expenselist = document.getElementById("expense-type");
             let expensetype = expenselist.options[expenselist.selectedIndex].text;
-            let outstring = "yer mum pays $" + String(amount) + " a month for " + expensetype;
+            let outstring = getOutput(amount, expensetype);
             document.getElementById("output").value = outstring;
-            document.getElementById
         }
     </script>
 
