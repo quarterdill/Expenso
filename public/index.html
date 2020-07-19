@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Expenso</title>
     <link href="css/styles.css" rel="stylesheet" type="text/css">
-    <script src="..\js\scripts.js"></script>
+    <!--<script src="..\js\scripts.js"></script> -->
 </head>
 
 <body>
@@ -28,6 +28,8 @@
             <div class="input-fields">
                 <label class="textinbox">Upload your receipt</label>
                 <input type="file" class="input inputfile" id="img" name="img" accept="image/png, image/jpg">
+                <label class="textinbox">Enter the number of people living in your home:</label>
+                <input type="number" class="input" min="1" max="100" placeholder="4" id="peopleamount">
                 <!--
                 <div class="dropdown input">
                     <button class="dropbtn">Expense</button>
@@ -50,7 +52,7 @@
                         <option value='miscellaneous'>Miscellaneous expenses</option>
                     </select>
                 </form>
-                <label class="textinbox">Enter the amount in dollars</label>
+                <label class="textinbox">Enter the monthly amount in dollars:</label>
                 <input type="number" class="input" min="0" max="5000" placeholder="$25.00" id="dollaramount">
                 <div class="btn" onclick=updateText()>Submit</div>
             </div>
@@ -71,34 +73,109 @@
     <script src="/__/firebase/7.16.1/firebase-firestore.js"></script>
 
     <script>
-        function getOutput(amount, expensetype) {
+        function getOutput(people, amount, expensetype) {
             // @quarterdill replace with good text
-            if (expensetype=="Water"){
-                return "water"
+            
+            if(people>=50) {
+                return "danger danger danger";
             }
-            if (expensetype=="Food"){
-                return "food"
+
+            if (expensetype=="Water") {
+                amount /= people;
+                if(amount>40) {
+                    return "Your water bill is quite high! Consider taking shorter showers, upgrading to a more efficient toilet, turning the faucet off when brushing your teeth and washing your hands, and being more mindful of how much water you use each day. If your water bill is exceptionally high or you are already mindful of you water use, you may have a leaky toilet and/or burst pipe. Remember water treatment and sewer system cleanliness both affect the environment."
+                }
+                else if(amount<3) {
+                    return "Your water bill is exceptionally low! Remember water treatment and sewer system cleanliness both affect the environment. You may not be drinking enough water. Stay hydrated!"
+                }
+                else if(amount<17) {
+                    return "Your water bill is great and below average. Remember water treatment and sewer system cleanliness both affect the environment. Keep up the fantastic work!"
+                }
+                else if(amount>22) {
+                    return "Your water bill is above average. Try to be mindful of the water you use every day and where you can cut down on your usage. Remember water treatment and sewer system cleanliness both affect the environment."
+                }
+                else return "Your water bill is average. You can still try to reduce your water usage during everyday tasks to save on your bill. Remember water treatment and sewer system cleanliness both affect the environment."
             }
-            if (expensetype=="Gas"){
-                return "gas"
+            else if (expensetype=="Electricity"){
+                amount /= people;
+                if(amount>60) {
+                    return "Your electricity bill is quite high! Consider turning off lights in rooms after you leave them, turning electrical appliances off when you can, and setting your home to a higher temperature in the summer. Remember electricity production comes from coal plants and other sources that produce greenhouse gases."
+                }
+                else if(amount<5) {
+                    return "Your electricity bill is exceptionally low! Make sure to keep your home at an appropriate temperature (16 to 30 degrees Celsius). Remember electricity production comes from coal plants and other sources that produce greenhouse gases. Keep up the amazing work!"
+                }
+                else if(amount<15) {
+                    return "Your electricity bill is exemplary and below average. Remember electricity production comes from coal plants and other sources that produce greenhouse gases. Keep up the good work!"
+                }
+                else if(amount>30) {
+                    return "Your electricity bill is above average. Try to turn lights off when appropriate and be mindful of your energy use. Remember electricity production comes from coal plants and other sources that produce greenhouse gases."
+                }
+                else return "Your electricity bill is average. You can still try to reduce your electricty usage during everyday tasks to save on your bill. Remember electricity production comes from coal plants and other sources that produce greenhouse gases."
             }
-            if (expensetype=="Electricity"){
-                return "electricity"
+            else if (expensetype=="Gas"){
+                amount /= people;
+                if(amount>60) {
+                    return "Your gas bill is quite high! Consider taking shorter hot-water showers and setting your thermostat to a lower temperature in the winter. Remember natural gas produces greenhouse gases and its extraction also affects the environment."
+                }
+                else if(amount<5) {
+                    return "Your gas bill is exceptionally low! Make sure to keep your home at an appropriate temperature (16 to 30 degrees Celsius). Remember natural gas produces greenhouse gases and its extraction also affects the environment. Keep up the fantastic work!"
+                }
+                else if(amount<15) {
+                    return "Your gas bill is exemplary and below average. Remember natural gas produces greenhouse gases and its extraction also affects the environment. Keep up the good work!"
+                }
+                else if(amount>40) {
+                    return "Your gas bill is above average. Consider taking shorter hot-water showers and setting your thermostat to a lower temperature in the winter. Remember natural gas produces greenhouse gases and its extraction also affects the environment."
+                }
+                else return "Your gas bill is average. You can still try to reduce your gas usage by turning your home to a lower temperature and taking shorter showers. Remember natural gas produces greenhouse gases and its extraction also affects the environment."
             }
-            if (expensetype=="Miscellaneous"){
-                return "miscellaneous"
+            else if (expensetype=="Food"){
+                amount /= people;
+                if(amount>200.00) {
+                    return "Your food expense is quite high! Try to buy more groceries instead of eating out, buy fresh foods instead of processed or frozen, and try new foods! In addition, some supermarkets have lower prices but the same product quality."
+                }
+                else if(amount<20) {
+                    return "Your food expense is exceptionally low! You may not be eating enough or choosing healthy options. In addition, you benefit the environment by eating at home because that reduces the packaging, food waste, and energy needed to create a meal. Consider visiting a food bank or soup kitchen if you are not eating enough."
+                }
+                else if(amount<100) {
+                    return "Your food expense is exemplary and below average. You benefit the environment by eating at home because that reduces the packaging, food waste, and energy needed to create a meal. Make sure you are eating enough of each food group and staying healthy!"
+                }
+                else if(amount>120) {
+                    return "Your food expense is above average. Try to be mindful of the items you buy at the supermarket and what cheaper and healthier options there are. In addition, you may be going to eat out too often as restaurant food costs more than buying your own groceries. Eating out is less eco-friendly because of all the extra packaging, food waste, and energy needed to create a meal."
+                }
+                else return "Your food expense is average. You can still try to reduce your food expense by staying away from fast food or unhealthy options that are often more expensive than fresh food. In addition, you benefit the environment by eating at home because that reduces the packaging, food waste, and energy needed to create a meal."
             }
+            else if (expensetype=="Miscellaneous"){
+                amount /= people;
+                if(amount>500.00) {
+                    return "Your miscellaneous expenses are quite high! Consider spending less on shopping or buying accessories as those often have a massive impact on the environment. It is more eco-friendly and saves money in the long-term to buy quality products that last for a long time. Remember each purchase you make likely had a negative impact on the environment, so the more you make, the bigger your detrimental impact on the environment."
+                }
+                else if(amount<8) {
+                    return "Your miscellaneous expenses are exceptionally low!  Remember each purchase you make likely had a negative impact on the environment. Keep the fantastic work up but remember that you can treat yourself too!"
+                }
+                else if(amount<200) {
+                    return "Your miscellaneous expenses are exemplary and below average. Remember each purchase you make will likely have a negative impact on the environment. Keep up the good work!"
+                }
+                else if(amount>350) {
+                    return "Your miscellaneous expenses are above average. Try to be mindful of what you spend your money on and how you can save it instead of spend it. Each purchase you make will likely have a negative impact on the environment."
+                }
+                else return "Your miscellaneous expenses are. You can still try to reduce your spending by opting out of optional purchases. Each purchase you make will likely have a negative impact on the environment."
+            }
+            return "adfasdfs";
         }
         function updateText() {
+            let people = document.getElementById("peopleamount").value;
             let amount = document.getElementById("dollaramount").value;
             let expenselist = document.getElementById("expense-type");
             let expensetype = expenselist.options[expenselist.selectedIndex].text;
-            let outstring = getOutput(amount, expensetype);
+            let outstring = getOutput(people, amount, expensetype);
             document.getElementById("output").value = outstring;
         }
-    </script>
+        </script>
+
 
 </body>
+
+
 </html>
 
 

@@ -87,6 +87,10 @@ nav a:focus {
   margin: 1em 0 1em 0;
 }
 
+#peopleamount {
+  margin: 1em 0 1em 0;
+}
+
 ::placeholder {
   color: #000;
 }
@@ -187,7 +191,7 @@ nav a:focus {
   border-bottom: 2px solid #c5ecfd;
   padding: 10px;
   color: #c5ecfd;
-  font-size: 20px;
+  font-size: 15px;
   width: 100%;
 }
 
