@@ -158,23 +158,23 @@
                 }
                 else return "Your food expense is average. You can still try to reduce your food expense by staying away from fast food or unhealthy options that are often more expensive than fresh food. In addition, you benefit the environment by eating at home because that reduces the packaging, food waste, and energy needed to create a meal."
             }
-            else if (expensetype=="Miscellaneous"){
+            else if (expensetype=="Miscellaneous expenses"){
                 amount /= people;
-                if(amount>500.00) {
+                if(amount>150.00) {
                     return "Your miscellaneous expenses are quite high! Consider spending less on shopping or buying accessories as those often have a massive impact on the environment. It is more eco-friendly and saves money in the long-term to buy quality products that last for a long time. Remember each purchase you make likely had a negative impact on the environment, so the more you make, the bigger your detrimental impact on the environment."
                 }
-                else if(amount<8) {
+                else if(amount<20) {
                     return "Your miscellaneous expenses are exceptionally low!  Remember each purchase you make likely had a negative impact on the environment. Keep the fantastic work up but remember that you can treat yourself too!"
                 }
-                else if(amount<200) {
+                else if(amount<50) {
                     return "Your miscellaneous expenses are exemplary and below average. Remember each purchase you make will likely have a negative impact on the environment. Keep up the good work!"
                 }
-                else if(amount>350) {
+                else if(amount>100) {
                     return "Your miscellaneous expenses are above average. Try to be mindful of what you spend your money on and how you can save it instead of spend it. Each purchase you make will likely have a negative impact on the environment."
                 }
-                else return "Your miscellaneous expenses are. You can still try to reduce your spending by opting out of optional purchases. Each purchase you make will likely have a negative impact on the environment."
+                else return "Your miscellaneous expenses are average. You can still try to reduce your spending by opting out of optional purchases. Each purchase you make will likely have a negative impact on the environment."
             }
-            return "adfasdfs";
+            return "Error.";
         }
         function updateText() {
             let people = document.getElementById("peopleamount").value;
