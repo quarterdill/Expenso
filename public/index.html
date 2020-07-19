@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Expense Calculator</title>
+    <title>Expenso</title>
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="..\js\scripts.js"></script>
 </head>
 
 <body>
-
-    <img src="img/receiptbackground.jpg" alt="receiptbackground" class="bg">
+    <div id="bg">
+        <img src="img/receiptbackground.jpg" alt="receiptbackground">
+    </div>
     <header>
         <nav>
             <ul>
@@ -25,7 +26,8 @@
         </div>
         <div class="calc-form">
             <div class="input-fields">
-                <input type="file" class="input" id="img" name="img" accept="image/png, image/jpg">
+                <label class="textinbox">Upload your receipt</label>
+                <input type="file" class="input inputfile" id="img" name="img" accept="image/png, image/jpg">
                 <!--
                 <div class="dropdown input">
                     <button class="dropbtn">Expense</button>
@@ -38,8 +40,8 @@
                     </div>
                 </div>
                 -->
-                <form action="/action_page.php">
-                    <label for="expense-type">Enter your expense type:</label>
+                <form action="/action_page.php" class="expensetype">
+                    <label for="expense-type" class="textinbox">Enter your expense type:</label>
                     <select id="expense-type" name="expense-type">
                         <option value='water'>Water</option>
                         <option value='food'>Food</option>
@@ -48,6 +50,7 @@
                         <option value='miscellaneous'>Miscellaneous expenses</option>
                     </select>
                 </form>
+                <label class="textinbox">Enter the amount in dollars</label>
                 <input type="number" class="input" min="0" max="5000" placeholder="$25.00" id="dollaramount">
                 <div class="btn" onclick=updateText()>Submit</div>
             </div>
@@ -80,7 +83,6 @@
 
 </body>
 </html>
-
 
 
 <!--
