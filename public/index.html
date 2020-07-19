@@ -6,7 +6,7 @@
     <title>Expenso</title>
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="js\scripts.js"></script>
-    <script src="functions\index.js"></script>
+    <script src="..\functions\index.js"></script>
 </head>
 
 <body>
@@ -61,6 +61,7 @@
         </div>
     </div>
 
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="/__/firebase/7.16.1/firebase-app.js"></script>
 
@@ -74,19 +75,19 @@
     <script>
         function getOutput(amount, expensetype) {
             // @quarterdill replace with good text
-            if (expensetype=="Water"){
+            if (expensetype == "Water") {
                 return "water"
             }
-            if (expensetype=="Food"){
+            if (expensetype == "Food") {
                 return "food"
             }
-            if (expensetype=="Gas"){
+            if (expensetype == "Gas") {
                 return "gas"
             }
-            if (expensetype=="Electricity"){
+            if (expensetype == "Electricity") {
                 return "electricity"
             }
-            if (expensetype=="Miscellaneous"){
+            if (expensetype == "Miscellaneous") {
                 return "miscellaneous"
             }
         }
@@ -96,6 +97,17 @@
             let expensetype = expenselist.options[expenselist.selectedIndex].text;
             let outstring = getOutput(amount, expensetype);
             document.getElementById("output").value = outstring;
+
+            firebase = firebaseConfig();
+            db = firebase.database();
+            var ref = db.ref('test1');
+
+            var data = {
+                expense: expensetype,
+                dollars: amount
+            }
+
+            ref.push(data);
         }
     </script>
 
